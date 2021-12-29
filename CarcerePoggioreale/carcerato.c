@@ -10,7 +10,7 @@
 #define LEN_COGNOME 10
 #define LEN_ID 10
 
-Carcerato* buildCarcerato() {
+Carcerato* buildCarcerato(Database* database) {
     char nome[LEN_NOME + 1], cognome[LEN_COGNOME + 1], id[LEN_ID + 1];
     int eta;
     Carcerato* carcerato = (Carcerato*) malloc(sizeof(Carcerato));

@@ -19,7 +19,7 @@ Sempre Fozza Napoli <3 <3 <3
 int main() {
     int opzione, run = 1;
     Database* database;
-    database->index = 0;
+    constructorDatabase(database);
    
     do {
         printf("\n%d)Aggiungi Carcerato\n%d)Elimina Carcerato\n%d)Stampa Database\n%d)Cerca Carcerato\n%d)Esci\n\nInserire opzione (%d / %d): ", AGGIUNGI, ELIMINA, STAMPA, CERCA, ESCI, AGGIUNGI, ESCI);

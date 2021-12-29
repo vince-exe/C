@@ -2,14 +2,16 @@
 #define DATABASE_H
 
 #include "carcerato.h"
-
-#define SIZE 30
-
+ 
 typedef struct Database {
-    struct Carcerato* listaCarcerati[SIZE];
+    struct Carcerato** listaCarcerati;  //questo (nel mio caso) è un array di puntatori che punta ad altri puntatori di tipo Carcerato*
     int index;
+    int size;
+    int indexSize;
+    int indexPrint;
 } Database;
 
+void constructorDatabase(Database* database);
 void addCarcerato(Database* database);
 void printDatabase(Database* database);
 void deleteCarcerato(Database* database);

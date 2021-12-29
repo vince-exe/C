@@ -12,16 +12,33 @@
 #define SEARCH_ETA 4
 
 #define LENGHT 15
+#define SIZE 10
+
+void constructorDatabase(Database* database) {
+    database->index = 0;
+    database->size = SIZE;
+    database->indexSize = SIZE;
+    database->indexPrint = 0;
+    database->listaCarcerati = (Carcerato**) malloc(sizeof(Carcerato*) * database->size);
+}
 
 void addCarcerato(Database* database) {
+    if(!(database->indexSize)) {
+        printf("realloco");
+        database->indexSize = SIZE;
+        database->size += SIZE;
+        database->listaCarcerati = (Carcerato**) realloc(database->listaCarcerati, (sizeof(Carcerato*) * database->size));
+    }
     database->listaCarcerati[database->index] = buildCarcerato();
     database->index++;
+    database->indexPrint++;
+    database->indexSize--;
 }
 
 void printDatabase(Database* database) {
     printf("\n\nDatabase Carcerati Poggioreale\n\n");
     int i;
-    for(i = 0; i < database->index; i++) {
+    for(i = 0; i < database->indexPrint; i++) {
         printf("\nNome: %s", database->listaCarcerati[i]->nome);
         printf("\nCognome: %s", database->listaCarcerati[i]->cognome);
         printf("\nId: %s", database->listaCarcerati[i]->id);
@@ -29,7 +46,7 @@ void printDatabase(Database* database) {
         printf("\nIndex Carcerato: %d", i);
         printf("\n");
     }
-    printf("\n");
+    printf("\nIl numero totale di carcerati equivale a: %d\n", i);
 }
 
 void printDatabaseIndex(Database* database, int index) {
@@ -65,19 +82,19 @@ void deleteCarcerato(Database* database) {
         return;
     }
 
-    int tempIndex = getIndex(database);
+    int tempIndex = getIndex(database); //prendo l'index dall'utente
     freeAll(database, tempIndex);
 
     for(; tempIndex < database->index - 1; tempIndex++) 
         database->listaCarcerati[tempIndex] = database->listaCarcerati[tempIndex + 1];
     
-    database->index--;
-    printf("%d", database->index);
+    database->indexSize++;
+    database->indexPrint--;
 }
 
 void search(Database* database) {
     if(!(checkIndex(database))) {
-        printf("\nImpossibile avviare la ricerca, il databse e' vuoto :-(\n");
+        printf("\nImpossibile avviare la ricerca, il database e' vuoto :-(\n");
         return;
     }
 
