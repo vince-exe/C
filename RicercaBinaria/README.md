@@ -1,3 +1,5 @@
-Algoritmo Ricerca Binaria
+Binary Search Algorithm
 
-Programma che effettua la ricerca di un numero tra un serie di numeri inseriti dall'utente, la ricerca avviene usando l'algoritmo di ricerca binaria.
+Program that searches for a number among a series of numbers entered by the user.
+
+The search is done using the binary search algorithm :-).
