@@ -1,4 +1,4 @@
-A simple program that copy the content of a file in an other file using the paramaters
+A simple program that copy the content of a file in an other file.
 from terminal.
 
 It take 2 arguments from terminal.
