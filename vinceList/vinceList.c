@@ -344,3 +344,67 @@ int getElements(struct List* head) {
     }
     return numElements;    
 }
+
+int getInteger(struct List* head) {
+    /*variable that will used for counter of integer elements*/
+    int numInteger = 0;
+    /*while head != NULL*/
+    while(head) {
+        /*check if the type is integer*/
+        if(head->type == INT)
+            /*update the num of integers*/
+            numInteger++;
+        
+        /*move head to the next node*/
+        head = head->next;
+    }
+    return numInteger;
+}
+
+int getFloat(struct List* head) {
+    /*variable that will used for counter of float elements*/
+    int numFloat = 0;
+    /*while head != NULL*/
+    while(head) {
+        /*check if the type is float*/
+        if(head->type == FLOAT)
+            /*update the num of float*/
+            numFloat++;
+        
+        /*move head to the next node*/
+        head = head->next;
+    }
+    return numFloat;
+}
+
+int getDouble(struct List* head) {
+    /*variable that will used for counter of double elements*/
+    int numDouble = 0;
+    /*while head != NULL*/
+    while(head) {
+        /*check if the type is double*/
+        if(head->type == DOUBLE)
+            /*update the num of double*/
+            numDouble++;
+        
+        /*move head to the next node*/
+        head = head->next;
+    }
+    return numDouble;
+}
+
+int getChar(struct List* head) {
+    /*variable that will used for counter of char elements*/
+    int numChar = 0;
+    /*while head != NULL*/
+    while(head) {
+        /*check if the type is char*/
+        if(head->type == CHAR)
+            /*update the num of char*/
+            numChar++;
+        
+        /*move head to the next node*/
+        head = head->next;
+    }
+    return numChar;
+}

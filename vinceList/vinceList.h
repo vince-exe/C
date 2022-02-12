@@ -82,4 +82,16 @@ void freeList(struct List** head);
 /*function that return the num of elements in the list*/
 int getElements(struct List* head);
 
+/*function that return the num of elements (integer)*/
+int getInteger(struct List* head);
+
+/*function that return the num of elements (float)*/
+int getFloat(struct List* head);
+
+/*function that return the num of elements (double)*/
+int getDouble(struct List* head);
+
+/*function that return the num of elements (char)*/
+int getChar(struct List* head);
+
 #endif
