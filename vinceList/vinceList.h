@@ -79,4 +79,7 @@ int removeChar(struct List** head, char key);
 /*function that free all nodes of the list*/
 void freeList(struct List** head);
 
+/*function that return the num of elements in the list*/
+int getElements(struct List* head);
+
 #endif

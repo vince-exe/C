@@ -118,13 +118,14 @@ void printList(struct List* head) {
         /*if the value to print is a char*/
         case CHAR:
             printf("%c\n", head->c);
-
+            break;
+            
         default:
             break;
         }
         /*move to the next node*/
         head = head->next;                                                                                                                                             
-    }   
+    }
 }
 
 int isInteger(struct List* head, int key) {
@@ -316,11 +317,30 @@ int removeChar(struct List** head, char key) {
 }
 
 void freeList(struct List** head) {
+    /*create a temp pointer to store the value of head and free the list*/
+    struct List* temp = NULL;
+
     /*while head != NULL*/
     while((*head)) {
-        /*free the node*/
-        free((*head));
+        /*assign to temp the value of head*/
+        temp = (*head);
         /*move to the next node*/
         (*head) = (*head)->next;
+        /*free the node*/
+        free(temp);
     }
+}
+
+int getElements(struct List* head) {
+    /*variable that will used for counter of elements in the list*/
+    int numElements = 0;
+
+    /*while head != NULL*/
+    while(head) {
+        /*increment the num of elements*/
+        numElements++;
+        /*move to the next node*/
+        head = head->next;
+    }
+    return numElements;    
 }
