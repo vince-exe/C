@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "vinceList.h"
 
@@ -95,6 +96,24 @@ int appendChar(struct List** head, char c) {
     return 1;
 }
 
+int appendString(struct List** head, char string[]) {
+    struct List* new_node = malloc(sizeof(struct List));
+
+    if(!new_node)
+        return 0;
+
+    new_node->type = STRING;
+
+    new_node->string = malloc(sizeof(char) * strlen(string));
+
+    strcpy(new_node->string, string);
+
+    new_node->next = (*head);
+    (*head) = new_node;
+
+    return 1;
+}
+
 void printList(struct List* head) {
     /*while head != NULL*/
     while(head) {
@@ -119,7 +138,12 @@ void printList(struct List* head) {
         case CHAR:
             printf("%c\n", head->c);
             break;
-            
+        
+        /*if the value to print is a string*/
+        case STRING:
+            printf("%s\n", head->string);
+            break;
+        
         default:
             break;
         }
@@ -172,6 +196,17 @@ int isChar(struct List* head, char key) {
     return 0;
 }
 
+int isString(struct List* head, char string[]) {
+    /*while head != NULL*/
+    while(head) {
+        /*check if the data exist*/
+        if(!strcmp(head->string, string))
+            return 1;
+        head = head->next;
+    }
+    return 0;
+}
+
 int removeInt(struct List** head, int key) {
     /*save the value of the head in a temp pointer*/
     struct List* temp = (*head);
@@ -198,7 +233,7 @@ int removeInt(struct List** head, int key) {
 
     /*if the key doesn't exist*/
     if(!temp)
-    return 0;
+        return 0;
 
     /*else connect the prev node to the next of temp*/
     prev->next = temp->next;
@@ -234,7 +269,7 @@ int removeFloat(struct List** head, float key) {
 
     /*if the key doesn't exist*/
     if(!temp)
-    return 0;
+        return 0;
 
     /*else connect the prev node to the next of temp*/
     prev->next = temp->next;
@@ -270,7 +305,7 @@ int removeDouble(struct List** head, double key) {
 
     /*if the key doesn't exist*/
     if(!temp)
-    return 0;
+        return 0;
 
     /*else connect the prev node to the next of temp*/
     prev->next = temp->next;
@@ -306,10 +341,51 @@ int removeChar(struct List** head, char key) {
 
     /*if the key doesn't exist*/
     if(!temp)
-    return 0;
+        return 0;
 
     /*else connect the prev node to the next of temp*/
     prev->next = temp->next;
+    /*free temp*/
+    free(temp);
+
+    return 1;
+}
+
+int removeString(struct List** head, char string[]) {
+    /*save the value of the head in a temp pointer*/
+    struct List* temp = (*head);
+    /*pointer used to point to the previus nodes*/
+    struct List* prev = NULL;
+
+    /*if the value to delete is the head*/
+    if(!strcmp(temp->string, string)) {
+        /*move the head*/
+        (*head) = temp->next;
+        /*free the string*/
+        free(temp->string);
+        /*free the value*/
+        free(temp);
+
+        return 1;
+    } 
+
+    /*while temp != NULL and temp->string != key*/
+    while(temp && strcmp(temp->string, string)) {
+        /*assign the value of temp to prev*/
+        prev = temp;
+        /*move temp to the next node*/
+        temp = temp->next;
+    }
+
+    /*if the key doesn't exist*/
+    if(!temp)
+        return 0;
+
+    /*else connect the prev node to the next of temp*/
+    prev->next = temp->next;
+
+    /*free the string*/
+    free(temp->string);
     /*free temp*/
     free(temp);
 
@@ -326,6 +402,11 @@ void freeList(struct List** head) {
         temp = (*head);
         /*move to the next node*/
         (*head) = (*head)->next;
+
+        /*check if the temp is a string*/
+        if(temp->type == STRING)
+            free(temp->string);
+
         /*free the node*/
         free(temp);
     }
@@ -407,4 +488,20 @@ int getChar(struct List* head) {
         head = head->next;
     }
     return numChar;
+}
+
+int getString(struct List* head) {
+    /*variable that will used for counter of char elements*/
+    int numString = 0;
+    /*while head != NULL*/
+    while(head) {
+        /*check if the type is string*/
+        if(head->type == STRING)
+            /*update the num of char*/
+            numString++;
+        
+        /*move head to the next node*/
+        head = head->next;
+    }
+    return numString;
 }

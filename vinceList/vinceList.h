@@ -5,6 +5,8 @@
 #define FLOAT 2
 #define DOUBLE 3
 #define CHAR 4
+#define STRING 5
+
 
 /*
 Library created for the manipulation of the lists in C
@@ -25,6 +27,7 @@ typedef struct List {
     int n_int;
     double n_double;
     char c;
+    char* string;
     /*variable to know of what type is the node
       1 = integer
       2 = float
@@ -49,6 +52,9 @@ int appendDouble(struct List** head, double value);
 /*function that append a char to the list*/
 int appendChar(struct List** head, char c);
 
+/*function that append a string to the list*/
+int appendString(struct List** head, char string[]);
+
 /*function to print the list*/
 void printList(struct List* head);
 
@@ -64,6 +70,9 @@ int isDouble(struct List* head, double key);
 /*function that return 1 if the data (char) is in the list, else return 0*/
 int isChar(struct List* head, char key);
 
+/*function that return 1 if the data (string) is in the list, else return 0*/
+int isString(struct List* head, char string[]);
+
 /*function to delete a node by key in the list (int)*/
 int removeInt(struct List** head, int key);
 
@@ -75,6 +84,9 @@ int removeDouble(struct List** head, double key);
 
 /*function to delete a node by key in the list (char)*/
 int removeChar(struct List** head, char key);
+
+/*function to delete a node by key in the list (string)*/
+int removeString(struct List** head, char string[]);
 
 /*function that free all nodes of the list*/
 void freeList(struct List** head);
@@ -93,5 +105,8 @@ int getDouble(struct List* head);
 
 /*function that return the num of elements (char)*/
 int getChar(struct List* head);
+
+/*function that return the num of elements (string)*/
+int getString(struct List* head);
 
 #endif

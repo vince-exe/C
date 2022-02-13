@@ -22,6 +22,9 @@ int main() {
     for(i = 0; i < 10; i++)
         appendFloat(&lista, 10.11);
     
+    for(i = 0; i < 10; i++)
+        appendString(&lista, "lesss goooooooooo");
+
     /*print elements*/
     printList(lista);
 
@@ -30,7 +33,8 @@ int main() {
     removeDouble(&lista, 10.200000);
     removeFloat(&lista, 10.11);
     removeInt(&lista, 1);
-
+    removeString(&lista, "lesss goooooooooo");
+    
     /*print elements again*/
     printf("\n\n");
     printList(lista);
@@ -40,7 +44,7 @@ int main() {
     printf("\nNumber of float: %d", getFloat(lista));
     printf("\nNumber of double: %d", getDouble(lista));
     printf("\nNumber of char: %d", getChar(lista));
-
+    printf("\nNumber of string: %d", getString(lista));
     printf("\n\nTotal Elements: %d", getElements(lista));
 
     /*clear list*/
