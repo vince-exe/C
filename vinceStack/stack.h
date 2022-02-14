@@ -1,7 +1,18 @@
+
+/*library created for the manipulation of stacks in C
+
+Program tested with: valgrind
+
+What's valgrind?
+
+Info[https://valgrind.org/]
+
+Founder: Caliendo Vincenzo alias vince-exe
+
+GitHub[https://github.com/vince-exe]
+*/
 #ifndef STACK_H
 #define STACK_H
-
-#define CLEAR -998877
 
 typedef struct Stack {
     /*array for data (integers)*/
@@ -22,7 +33,7 @@ void freeStack(struct Stack** stack);
 int isFull(struct Stack* stack);
 
 /*function the return the number of elements in the stack*/
-int getElements(struct Stack* stack);
+int getcurrElements(struct Stack* stack);
 
 /*function that add an element to the Stack*/
 int push(struct Stack* stack, int value);
@@ -35,5 +46,8 @@ int checkValue(int value);
 
 /*function that return an element without removing it from the stack*/
 int returnElement(struct Stack* stack);
+
+/*function that return the size of the stack*/
+int getSize(struct Stack* stack);
 
 #endif

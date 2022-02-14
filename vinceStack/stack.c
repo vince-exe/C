@@ -29,10 +29,9 @@ void freeStack(struct Stack** stack) {
     (*stack) = NULL;
 }
 
-int getElements(struct Stack* stack) {
+int getcurrElements(struct Stack* stack) {
     int i;
-    
-    /*if the value != CLEAR increment the nElements*/
+    /*count current elements*/
     for(i = 0; i < stack->index; i++);
 
     return i;
@@ -40,7 +39,7 @@ int getElements(struct Stack* stack) {
 
 int isFull(struct Stack* stack) {
     /*return 0 if the stack isn't full*/ 
-    if(getElements(stack) <= stack->size) 
+    if(getcurrElements(stack) <= stack->size) 
         return 0;
     
     /*else return 1 (is full)*/
@@ -80,4 +79,8 @@ int pop(struct Stack* stack) {
 int returnElement(struct Stack* stack) {
     /*return the value at the index without removing it*/ 
     return stack->stack[stack->index];
+}
+
+int getSize(struct Stack* stack) {
+    return stack->size;
 }
