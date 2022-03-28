@@ -119,3 +119,20 @@ int readString(char* string, int buffer) {
 
     return i;
 }
+
+void strct_(char* dest, char* src) {
+    char *p1 = dest, *p2 = src;
+
+    char* tmp = &dest[strlen_(dest)];
+    
+    while(*p2 != '\0') {
+        *tmp = *p2;
+        tmp+=1;
+        p2+=1;
+    }
+
+    tmp += 1;
+    *tmp = '\0';
+
+    dest = p1;
+}

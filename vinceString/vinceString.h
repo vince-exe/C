@@ -6,7 +6,7 @@
 /*
 Founder: Caliendo Vincenzo
 
-Last Update: 26/03/2022 18:54
+Last Update: 28/03/2022 23:30
 */
 
 /*function that return the lenght of a string*/
@@ -32,5 +32,8 @@ int isString(char* dest, const char* src);
 
 /*function created for take from stdin a string and paste it into the given vector without overflow the given buffer*/
 int readString(char* string, int buffer);
+
+/*function to concatenate a string into another string*/
+void strct_(char* dest, char* src);
 
 #endif
