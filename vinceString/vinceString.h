@@ -2,38 +2,78 @@
 #define VINCESTRING_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
 Founder: Caliendo Vincenzo
 
-Last Update: 28/03/2022 23:30
+Last Update: 29/03/2022 18:35
 */
 
-/*function that return the lenght of a string*/
+/*return the lenght of a string*/
 int strlen_(const char* string);
 
-/*function that return 1 if the string are equals, else return 0*/
+/*return 1 if strings are equals, else 0*/
 int strcmpy_(char* string1, char* string2);
 
-/*function that copy the content of src in dest string return the number of characters that are been pasted*/
+/*copy the content of src in dest string return the number of characters that are been pasted*/
 int strcpy_(char* dest, char* src);
 
-/*function that return 1 if the given character is present un the string*/
+/*return 1 if the given character is present in the string*/
 int ischar_(char* string, char c);
 
-/*function that check if a given character is present in the string, and return the pointer to it*/
+/*return a pointer to, which points to the memory address where the given character is located*/
 char* strsrc_(char* src, char c);
 
-/*function that return how many time there is the given character in the string*/
-int cntchar_(char* string, char c);
+/*return how many times the there is the given character in the string*/
+int cntchar_(char* string, const char* c);
 
-/*function that return 1 if the given word is present in the string*/
+/*return 1 if the given src string is present in the dest string*/
 int isString(char* dest, const char* src);
 
-/*function created for take from stdin a string and paste it into the given vector without overflow the given buffer*/
+/*read a given number of characters from stdin and put it in a buffer*/
 int readString(char* string, int buffer);
 
-/*function to concatenate a string into another string*/
-void strct_(char* dest, char* src);
+
+/*concatenate two strings (make sure that the string dest has enough space)
+
+also return a pointer to the concatenated string
+*/
+char* strct_(char* dest, char* src);
+
+
+/*concatenate the two given strings and return a pointer to the concatenated string
+
+it's different from strct_() because here the pointer is dinamically allocated
+*/
+char* strct2_(char* dest, char* src);
+
+
+/*set a string with the given character
+
+also return a pointer to the setted string
+*/
+char* strnset_(char* string, const char* sm, int count);
+
+
+/*set ALL the string to the given character
+
+also return a pointer to the full setted string
+*/
+char* strset_(char* string, const char* sm);
+
+
+/*start to set a string from (int start) and continue based on (int count)
+
+also return a pointer to the setted string
+*/
+char* strset1_(char* string, const char* sm, int start, int count);
+
+
+/*reverse a string
+
+also return a pointer to the reversed string
+*/
+char* strrev_(char* string);
 
 #endif

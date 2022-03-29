@@ -70,12 +70,13 @@ int ischar_(char* string, char c) {
     return 0;
 }
 
-int cntchar_(char* string, char c) {
+int cntchar_(char* string, const char* c) {
     int cnt = 0;
     char *p = string;
+    const char *c1 = c;
 
     while(*p != '\0') {
-        if(*p == c) {
+        if(*p == *c) {
             cnt++;
         }
         p+=1;
@@ -120,7 +121,7 @@ int readString(char* string, int buffer) {
     return i;
 }
 
-void strct_(char* dest, char* src) {
+char* strct_(char* dest, char* src) {
     char *p1 = dest, *p2 = src;
 
     char* tmp = &dest[strlen_(dest)];
@@ -131,8 +132,66 @@ void strct_(char* dest, char* src) {
         p2+=1;
     }
 
-    tmp += 1;
     *tmp = '\0';
-
     dest = p1;
+
+    return dest;
+}
+
+char* strct2_(char* dest, char* src) {
+    char* nw = malloc((strlen_(dest) - 1) + (strlen_(src) - 1) + 1);
+    strcpy_(nw, dest);
+    strcpy_(&nw[strlen_(nw)], src);
+
+    nw[strlen_(nw)] = '\0';
+
+    return nw;
+}
+
+char* strnset_(char* string, const char* sm, int count) {
+    char* p = string;
+    int i = 0;
+
+    while(*p != '\0' && i < count) {
+        *p = *sm;
+        i++;
+        p+=1;
+    }
+    
+    return string;
+}
+
+char* strset_(char* string, const char* sm) {
+    char *p = string;
+    while(*p != '\0') {
+        *p = *sm;
+        p+=1;
+    }
+
+    return string;
+}
+
+char* strset1_(char* string, const char* sm, int start, int count) {
+    char* p = &string[start];
+    int i = 0;
+
+    while(*p != '\0' && i < count) {
+        *p = *sm;
+        p+=1;
+        i++;
+    }
+
+    return string;
+}
+
+char* strrev_(char* string) {
+    int i;
+    char c;
+    for(i = 0; i < (strlen_(string) - i) - 1; i++) {
+        c = string[i];
+        string[i] = string[(strlen_(string) - i) - 1];
+        string[(strlen_(string) - i) - 1] = c;
+    }
+
+    return string;
 }
